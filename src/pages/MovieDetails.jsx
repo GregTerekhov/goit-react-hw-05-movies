@@ -1,11 +1,14 @@
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import { RxArrowRight } from 'react-icons/rx';
 import {
   BackButton,
   DetailsContainer,
   MovieInfo,
   AdditionalInfo,
+  AdditionalList,
+  SubMenuLink,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -61,15 +64,21 @@ const MovieDetails = () => {
         </div>
       </MovieInfo>
       <AdditionalInfo>
-        <p>Additional information</p>
-        <ul>
+        <h3>Additional information</h3>
+        <AdditionalList>
           <li>
-            <Link to="cast">Cast</Link>
+            <SubMenuLink to="cast">
+              <RxArrowRight />
+              Cast
+            </SubMenuLink>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <SubMenuLink to="reviews">
+              <RxArrowRight />
+              Reviews
+            </SubMenuLink>
           </li>
-        </ul>
+        </AdditionalList>
         <Outlet />
       </AdditionalInfo>
     </DetailsContainer>

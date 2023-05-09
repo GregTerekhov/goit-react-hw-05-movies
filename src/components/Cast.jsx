@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { CastItem, CastInfo } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -28,13 +29,23 @@ const Cast = () => {
   return (
     <ul>
       {cast.map(actor => (
-        <li key={actor.id}>
+        <CastItem key={actor.id}>
           {actor.profile_path && (
-            <img src={`${imageUrl}${actor.profile_path}`} alt="" width="160" />
+            <img
+              src={`${imageUrl}${actor.profile_path}`}
+              alt={actor.name}
+              width="120"
+            />
           )}
-          <p>{actor.name}</p>
-          <p>Character: {actor.character}</p>
-        </li>
+          <CastInfo>
+            <p>
+              <b>Name:</b> {actor.name}
+            </p>
+            <p>
+              <b>Character:</b> {actor.character}
+            </p>
+          </CastInfo>
+        </CastItem>
       ))}
     </ul>
   );

@@ -42,13 +42,18 @@ const Movies = () => {
 
   return (
     <MoviesContainer>
-      <input type="text" value={query} onChange={handleInputChange} />
-      <h1>Found movies</h1>
+      <input
+        type="text"
+        value={query}
+        placeholder="Enter movie's title..."
+        onChange={handleInputChange}
+      />
+      {query && <h1>Found movies</h1>}
       <ul>
         {movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={movie.id} state={{ from: location }}>
+              <Link to={`${movie.id}`} state={{ from: location }}>
                 {movie.title}
               </Link>
             </li>

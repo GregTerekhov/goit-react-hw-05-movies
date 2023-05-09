@@ -33,3 +33,23 @@ export const AdditionalInfo = styled.div`
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
 `;
+
+export const AdditionalList = styled.ul`
+  list-style: none;
+`;
+
+export const SubMenuLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 24px;
+  transition: color 400ms ease;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ff7341;
+  }
+`;

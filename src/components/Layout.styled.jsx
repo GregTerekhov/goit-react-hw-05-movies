@@ -15,7 +15,7 @@ export const Header = styled.header`
 
 export const Navigation = styled.nav`
   display: flex;
-  gap: 24px;
+  gap: 8px;
 `;
 
 export const PageLink = styled(NavLink)`
@@ -23,6 +23,7 @@ export const PageLink = styled(NavLink)`
   color: inherit;
   font-size: 24px;
   padding: 16px;
+  transition: color 400ms ease;
 
   &:hover,
   &:focus,
