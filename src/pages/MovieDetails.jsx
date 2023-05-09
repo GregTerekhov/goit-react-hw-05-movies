@@ -1,7 +1,7 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { RxArrowRight } from 'react-icons/rx';
+import { RxArrowLeft, RxArrowRight } from 'react-icons/rx';
 import {
   BackButton,
   DetailsContainer,
@@ -10,6 +10,8 @@ import {
   AdditionalList,
   SubMenuLink,
 } from './MovieDetails.styled';
+
+const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
@@ -20,7 +22,7 @@ const MovieDetails = () => {
   useEffect(() => {
     async function fetchOneMovie(movieId) {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=0cafd553b6a217ff7b99743b1693af60`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
       );
       console.log(response);
       return response.data;
@@ -47,16 +49,19 @@ const MovieDetails = () => {
 
   return (
     <DetailsContainer>
-      <BackButton to={backLinkLocationRef.current}>Go back</BackButton>
+      <BackButton to={backLinkLocationRef.current}>
+        <RxArrowLeft />
+        Go back
+      </BackButton>
       <MovieInfo>
         {posterPath && (
           <img src={`${imageUrl}${posterPath}`} alt={movie.title} />
         )}
         <div>
           <h2>
-            {movie.title} ({releaseDate})
+            {movie.title} ({releaseDate ? releaseDate : movie.status})
           </h2>
-          <p>User Score: {countUserScore()}</p>
+          {movie.average && <p>User Score: {countUserScore()}</p>}
           <h3>Overview</h3>
           <p>{movie.overview}</p>
           <h3>Genres</h3>

@@ -3,6 +3,8 @@ import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { MoviesContainer } from './Movies.styled';
 
+const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
+
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +18,7 @@ const Movies = () => {
     }
     async function fetchSearchResult(query) {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=0cafd553b6a217ff7b99743b1693af60&page=1&query=${query}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&page=1&query=${query}`
       );
       return response.data.results.filter(movie =>
         movie.title.toLowerCase().includes(query.toLowerCase())

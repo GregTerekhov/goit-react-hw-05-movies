@@ -4,7 +4,10 @@ import styled from '@emotion/styled';
 export const BackButton = styled(Link)`
   text-decoration: none;
   color: inherit;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
   margin-bottom: 24px;
   padding: 8px 16px;
   border: 1px solid grey;
