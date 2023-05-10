@@ -11,7 +11,6 @@ const Reviews = () => {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=0cafd553b6a217ff7b99743b1693af60&language=en-US&page=1`
       );
-      console.log(response.data);
       return response.data.results;
     }
 

@@ -14,7 +14,6 @@ const Cast = () => {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
       );
-      console.log(response.data);
       return response.data;
     }
 
