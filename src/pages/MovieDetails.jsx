@@ -61,7 +61,7 @@ const MovieDetails = () => {
           <h2>
             {movie.title} ({releaseDate ? releaseDate : movie.status})
           </h2>
-          {movie.average && <p>User Score: {countUserScore()}</p>}
+          <p>User Score: {countUserScore()}</p>
           <h3>Overview</h3>
           <p>{movie.overview}</p>
           <h3>Genres</h3>
