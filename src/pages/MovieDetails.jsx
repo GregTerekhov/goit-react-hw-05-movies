@@ -11,6 +11,7 @@ import {
   SubMenuLink,
 } from './MovieDetails.styled';
 
+const BASE_URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
 
 const MovieDetails = () => {
@@ -22,7 +23,7 @@ const MovieDetails = () => {
   useEffect(() => {
     async function fetchOneMovie(movieId) {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+        `${BASE_URL}${movieId}?api_key=${API_KEY}`
       );
       return response.data;
     }

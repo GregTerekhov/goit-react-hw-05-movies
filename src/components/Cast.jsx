@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CastItem, CastInfo } from './Cast.styled';
 
+const BASE_URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
 
 const Cast = () => {
@@ -12,7 +13,7 @@ const Cast = () => {
   useEffect(() => {
     async function fetchCast(movieId) {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
+        `${BASE_URL}${movieId}/credits?api_key=${API_KEY}&language=en-US`
       );
       return response.data;
     }

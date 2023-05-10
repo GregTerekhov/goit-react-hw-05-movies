@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { HomeContainer, HomeTitle } from './Home.styled';
 
+const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/day';
 const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
 
 const Home = () => {
@@ -10,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
+      .get(`${BASE_URL}?api_key=${API_KEY}`)
       .then(response => {
         setMovies(response.data.results);
       })
