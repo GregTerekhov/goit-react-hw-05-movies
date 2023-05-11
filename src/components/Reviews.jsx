@@ -1,22 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-
-const BASE_URL = 'https://api.themoviedb.org/3/movie/';
-const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
+import { fetchReviews } from 'services/api';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
-    async function fetchReviews(movieId) {
-      const response = await axios.get(
-        `${BASE_URL}${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`
-      );
-      return response.data.results;
-    }
-
     fetchReviews(movieId)
       .then(results => setReviews(results))
       .catch(error => {

@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import { fetchOneMovie } from 'services/api';
 import { RxArrowLeft, RxArrowRight } from 'react-icons/rx';
 import {
   BackButton,
@@ -11,9 +11,6 @@ import {
   SubMenuLink,
 } from './MovieDetails.styled';
 
-const BASE_URL = 'https://api.themoviedb.org/3/movie/';
-const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
-
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const location = useLocation();
@@ -21,13 +18,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    async function fetchOneMovie(movieId) {
-      const response = await axios.get(
-        `${BASE_URL}${movieId}?api_key=${API_KEY}`
-      );
-      return response.data;
-    }
-
     fetchOneMovie(movieId)
       .then(chosenMovie => setMovie(chosenMovie))
       .catch(error => {

@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { HomeContainer, HomeTitle } from './Home.styled';
-
-const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/day';
-const API_KEY = '0cafd553b6a217ff7b99743b1693af60';
+import { fetchTrending } from 'services/api';
+import MoviesList from 'components/MoviesList';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}?api_key=${API_KEY}`)
+    fetchTrending()
       .then(response => {
-        setMovies(response.data.results);
+        setMovies(response);
       })
       .catch(error => console.error(error.message));
   }, []);
@@ -21,16 +17,7 @@ const Home = () => {
   return (
     <HomeContainer>
       <HomeTitle>Trending movies</HomeTitle>
-      <ul>
-        {movies.length > 0 &&
-          movies.map(movie => {
-            return (
-              <li key={movie.id}>
-                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
-              </li>
-            );
-          })}
-      </ul>
+      {!!movies.length && <MoviesList movies={movies} />}
     </HomeContainer>
   );
 };
