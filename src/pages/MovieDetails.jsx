@@ -36,6 +36,7 @@ const MovieDetails = () => {
   const releaseDate = new Date(movie.release_date).getFullYear();
   const imageUrl = 'https://image.tmdb.org/t/p/w300';
   const posterPath = movie.poster_path;
+  const productionCountries = movie.production_countries;
 
   return (
     <DetailsContainer>
@@ -51,11 +52,16 @@ const MovieDetails = () => {
           <h2>
             {movie.title} ({releaseDate ? releaseDate : movie.status})
           </h2>
+          <p>
+            Made by:{' '}
+            {productionCountries &&
+              productionCountries.map(country => country.name).join(', ')}
+          </p>
           <p>User Score: {countUserScore()}</p>
           <h3>Overview</h3>
           <p>{movie.overview}</p>
           <h3>Genres</h3>
-          <p>{genres && genres.map(genre => genre.name).join('  ')} </p>
+          <p>{genres && genres.map(genre => genre.name).join(' ')} </p>
         </div>
       </MovieInfo>
       <AdditionalInfo>

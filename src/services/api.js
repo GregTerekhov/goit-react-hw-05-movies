@@ -30,6 +30,7 @@ export const fetchOneMovie = async movieId => {
     page: 1,
   };
   const { data } = await axios.get(`/movie/${movieId}`, { params });
+  console.log(data);
   return data;
 };
 
