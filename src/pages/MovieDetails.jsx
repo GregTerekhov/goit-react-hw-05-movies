@@ -53,7 +53,7 @@ const MovieDetails = () => {
             {movie.title} ({releaseDate ? releaseDate : movie.status})
           </h2>
           <p>
-            Made by:{' '}
+            Made in:{' '}
             {productionCountries &&
               productionCountries.map(country => country.name).join(', ')}
           </p>
