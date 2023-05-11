@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { DebounceInput } from 'react-debounce-input';
 import { fetchSearchResult } from 'services/api';
 import MoviesList from 'components/MoviesList';
 import { MoviesContainer } from './Movies.styled';
@@ -34,7 +35,9 @@ const Movies = () => {
 
   return (
     <MoviesContainer>
-      <input
+      <DebounceInput
+        minLength={2}
+        debounceTimeout={300}
         type="text"
         value={query}
         placeholder="Enter movie's title..."
